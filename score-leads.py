@@ -10,6 +10,15 @@ def score_lead(listing):
     score = 0
     reasons = []
     
+    # Detect mobile/manufactured homes
+    address = listing.get("address", "").lower()
+    is_mobile = any(x in address for x in ["space ", "spc ", "unit #", "lot #", "mobile"])
+    if is_mobile:
+        listing["property_type"] = "Mobile/Manufactured"
+        reasons.append("⚠️ Mobile/Manufactured Home")
+    else:
+        listing["property_type"] = "Standard"
+    
     # Parse price
     price_str = listing.get("price", "$0").replace("$", "").replace(",", "")
     try:
