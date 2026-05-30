@@ -190,69 +190,26 @@ tr.warm-row{background:rgba(245,158,11,0.04);border-left:4px solid #f59e0b}
 
 <script>
 let allDeals = [
-      {price:"$799,999",beds:3,baths:1,sqft:1122,address:"2101 S Sycamore St, Santa Ana, CA 92707",score:5,rating:"🟡 WARM",type:"SFR",reasons:["Under $800K","3 bedrooms","Target area: Santa Ana"],
-        analysis:{
-          estRent:2900,estRehab:45000,arv:950000,
-          wholesale:{maxOffer:590000,spread:-209999,viable:false},
-          flip:{totalCost:844999,profit:105001,roi:12.4},
-          rental:{mortgage:4800,taxes:833,insurance:200,totalMonthly:5833,cashflow:-2933,capRate:2.7}
-        }},
-      {price:"$449,000",beds:2,baths:2,sqft:1100,address:"24055 Paseo Del Lago Unit 1063, Laguna Woods, CA 92637",score:4,rating:"🟡 WARM",type:"Condo (55+)",reasons:["Under $800K","Under $500K"],
-        analysis:{
-          estRent:2800,estRehab:25000,arv:520000,
-          wholesale:{maxOffer:324000,spread:-125000,viable:false},
-          flip:{totalCost:474000,profit:46000,roi:9.7},
-          rental:{mortgage:2700,taxes:468,insurance:150,totalMonthly:3318,cashflow:-518,capRate:5.3}
-        }},
-      {price:"$775,000",beds:2,baths:2,sqft:1104,address:"29576 Pelican Way, Laguna Niguel, CA 92677",score:2,rating:"⚪ COLD",type:"SFR",reasons:["Under $800K"],
-        analysis:{
-          estRent:3200,estRehab:35000,arv:900000,
-          wholesale:{maxOffer:580000,spread:-195000,viable:false},
-          flip:{totalCost:810000,profit:90000,roi:11.1},
-          rental:{mortgage:4650,taxes:806,insurance:200,totalMonthly:5656,cashflow:-2456,capRate:3.5}
-        }},
-      {price:"$1,580,000",beds:4,baths:3,sqft:2612,address:"2216 Rancho Corona Dr, Corona, CA 92882",score:1,rating:"⚪ COLD",type:"SFR",reasons:["4 bedrooms"],
-        analysis:{
-          estRent:4200,estRehab:50000,arv:1750000,
-          wholesale:{maxOffer:1160000,spread:-420000,viable:false},
-          flip:{totalCost:1630000,profit:120000,roi:7.4},
-          rental:{mortgage:9480,taxes:1645,insurance:350,totalMonthly:11475,cashflow:-7275,capRate:2.4}
-        }},
-      {price:"$820,000",beds:4,baths:2.5,sqft:1872,address:"1544 Dahlia Cir, Corona, CA 92882",score:1,rating:"⚪ COLD",type:"SFR",reasons:["4 bedrooms"],
-        analysis:{
-          estRent:3600,estRehab:45000,arv:950000,
-          wholesale:{maxOffer:600000,spread:-220000,viable:false},
-          flip:{totalCost:865000,profit:85000,roi:9.8},
-          rental:{mortgage:4920,taxes:854,insurance:200,totalMonthly:5974,cashflow:-2374,capRate:3.7}
-        }},
-      {price:"$929,999",beds:3,baths:2,sqft:1294,address:"2359 Temescal Ave, Norco, CA 92860",score:1,rating:"⚪ COLD",type:"SFR",reasons:["3 bedrooms"],
-        analysis:{
-          estRent:3200,estRehab:40000,arv:1050000,
-          wholesale:{maxOffer:680000,spread:-249999,viable:false},
-          flip:{totalCost:969999,profit:80001,roi:8.2},
-          rental:{mortgage:5580,taxes:968,insurance:220,totalMonthly:6768,cashflow:-3568,capRate:2.8}
-        }},
-      {price:"$1,999,900",beds:4,baths:3,sqft:2300,address:"22 Serenity Ln, Laguna Niguel, CA 92677",score:1,rating:"⚪ COLD",type:"SFR",reasons:["4 bedrooms"],
-        analysis:{
-          estRent:6500,estRehab:0,arv:2100000,
-          wholesale:{maxOffer:1455000,spread:-544900,viable:false},
-          flip:{totalCost:1999900,profit:100100,roi:5.0},
-          rental:{mortgage:12000,taxes:2083,insurance:400,totalMonthly:14483,cashflow:-7983,capRate:2.7}
-        }},
-      {price:"$8,250,000",beds:4,baths:4,sqft:3705,address:"2501 Harbor View Dr, Corona Del Mar, CA 92625",score:1,rating:"⚪ COLD",type:"SFR",reasons:["4 bedrooms","Luxury"],
-        analysis:{
-          estRent:20000,estRehab:0,arv:9000000,
-          wholesale:{maxOffer:6285000,spread:-1965000,viable:false},
-          flip:{totalCost:8250000,profit:750000,roi:9.1},
-          rental:{mortgage:49500,taxes:8594,insurance:1200,totalMonthly:59294,cashflow:-39294,capRate:2.2}
-        }},
-      {price:"$1,249,995",beds:4,baths:4,sqft:3156,address:"14350 Saint Michaels Ln, Chino, CA 91710",score:2,rating:"⚪ COLD",type:"SFR",reasons:["4 bedrooms"],
-        analysis:{
-          estRent:5000,estRehab:30000,arv:1400000,
-          wholesale:{maxOffer:935000,spread:-314995,viable:false},
-          flip:{totalCost:1279995,profit:120005,roi:9.4},
-          rental:{mortgage:7500,taxes:1302,insurance:300,totalMonthly:9102,cashflow:-4102,capRate:3.3}
-        }},
+      // ORANGE COUNTY
+      {price:"$799,999",beds:3,baths:1,sqft:1122,address:"2101 S Sycamore St, Santa Ana, CA 92707",score:5,rating:"🟡 WARM",type:"SFR",reasons:["Under $800K","3 bed","Santa Ana"],analysis:{estRent:2900,estRehab:45000,arv:950000,flip:{profit:105000,roi:12.4},rental:{cashflow:-2933}}},
+      {price:"$550,000",beds:3,baths:2,sqft:1088,address:"2511 W Sunflower Ave Unit H3, Santa Ana, CA 92704",score:5,rating:"🟡 WARM",type:"Condo",reasons:["Under $800K","3 bed","Santa Ana"],analysis:{estRent:2600,estRehab:25000,arv:650000,flip:{profit:75000,roi:13.0},rental:{cashflow:-1200}}},
+      {price:"$449,000",beds:2,baths:2,sqft:1100,address:"24055 Paseo Del Lago Unit 1063, Laguna Woods, CA 92637",score:4,rating:"🟡 WARM",type:"Condo (55+)",reasons:["Under $500K"],analysis:{estRent:2800,estRehab:25000,arv:520000,flip:{profit:46000,roi:9.7},rental:{cashflow:-518}}},
+      {price:"$399,999",beds:2,baths:2,sqft:929,address:"212 S Kraemer Blvd Unit 1204, Placentia, CA 92870",score:6,rating:"🟡 WARM",type:"Condo",reasons:["Under $500K","Placentia"],analysis:{estRent:2200,estRehab:20000,arv:475000,flip:{profit:55000,roi:13.1},rental:{cashflow:-472}}},
+      {price:"$399,000",beds:2,baths:1,sqft:845,address:"212 S Kraemer Blvd Unit 2611, Placentia, CA 92870",score:6,rating:"🟡 WARM",type:"Condo",reasons:["Under $500K","Placentia"],analysis:{estRent:2000,estRehab:20000,arv:470000,flip:{profit:51000,roi:12.2},rental:{cashflow:-652}}},
+      {price:"$775,000",beds:2,baths:2,sqft:1104,address:"29576 Pelican Way, Laguna Niguel, CA 92677",score:2,rating:"⚪ COLD",type:"SFR",reasons:["Under $800K"],analysis:{estRent:3200,estRehab:35000,arv:900000,flip:{profit:90000,roi:11.1},rental:{cashflow:-2456}}},
+      {price:"$265,000",beds:4,baths:2,sqft:1600,address:"10550 Western Ave Space 9, Stanton, CA 90680",score:8,rating:"🔥 HOT",type:"⚠️ Mobile Home",reasons:["Under $300K","4 bed","Stanton","Mobile Home - lot rent applies"],analysis:{estRent:2200,estRehab:15000,arv:280000,flip:{profit:0,roi:0},rental:{cashflow:500,note:"Minus $800-1200/mo lot rent"}}},
+      {price:"$192,500",beds:3,baths:2,sqft:1152,address:"21650 Temescal Canyon Rd Space 60, Corona, CA 92883",score:7,rating:"🔥 HOT",type:"⚠️ Mobile Home",reasons:["Under $300K","3 bed","Mobile Home"],analysis:{estRent:1800,estRehab:10000,arv:210000,flip:{profit:0,roi:0},rental:{cashflow:200,note:"Minus lot rent"}}},
+      {price:"$155,000",beds:2,baths:2,sqft:1440,address:"20739 Lycoming St Space 74, Walnut, CA 91789",score:6,rating:"🟡 WARM",type:"⚠️ Mobile Home",reasons:["Under $300K","Mobile Home"],analysis:{estRent:1600,estRehab:10000,arv:170000,flip:{profit:0,roi:0},rental:{cashflow:400,note:"Minus lot rent"}}},
+      {price:"$139,900",beds:1,baths:1,sqft:880,address:"15980 Grand Ave Space M33, Lake Elsinore, CA 92530",score:6,rating:"🟡 WARM",type:"⚠️ Mobile Home",reasons:["Under $300K","Mobile Home"],analysis:{estRent:1200,estRehab:8000,arv:155000,flip:{profit:0,roi:0},rental:{cashflow:100,note:"Minus lot rent"}}},
+      // INLAND EMPIRE
+      {price:"$464,900",beds:3,baths:2,sqft:1680,address:"38124 Calle Amigable, Murrieta, CA 92563",score:4,rating:"🟡 WARM",type:"SFR",reasons:["Under $500K","3 bed","IE - 60 min drive"],analysis:{estRent:2800,estRehab:25000,arv:540000,flip:{profit:50000,roi:10.2},rental:{cashflow:-598}}},
+      {price:"$400,000",beds:3,baths:3,sqft:1675,address:"6343 Murrieta Ave, Yucca Valley, CA 92284",score:3,rating:"⚪ COLD",type:"SFR",reasons:["Under $500K","3 bed","IE - 2 hrs"],analysis:{estRent:1800,estRehab:20000,arv:460000,flip:{profit:40000,roi:9.5},rental:{cashflow:-188}}},
+      {price:"$369,000",beds:3,baths:2,sqft:1807,address:"2665 Colorado River Rd, Blythe, CA 92225",score:2,rating:"⚪ COLD",type:"SFR",reasons:["Under $500K","3 bed","Too far - 3+ hrs"],analysis:{estRent:1400,estRehab:15000,arv:400000,flip:{profit:16000,roi:4.2},rental:{cashflow:-900}}},
+      {price:"$290,000",beds:3,baths:2,sqft:1433,address:"1390 Curtis Ave, Salton City, CA 92275",score:2,rating:"⚪ COLD",type:"SFR",reasons:["Under $300K","3 bed","Too far - 3+ hrs"],analysis:{estRent:1200,estRehab:20000,arv:320000,flip:{profit:10000,roi:3.2},rental:{cashflow:-700}}},
+      {price:"$475,000",beds:4,baths:3,sqft:1696,address:"298 S Fairway Dr, Lake Arrowhead, CA 92352",score:3,rating:"⚪ COLD",type:"SFR",reasons:["Under $500K","4 bed","90 min drive"],analysis:{estRent:2200,estRehab:30000,arv:550000,flip:{profit:45000,roi:8.9},rental:{cashflow:-1203}}},
+      {price:"$1,999,900",beds:4,baths:3,sqft:2300,address:"22 Serenity Ln, Laguna Niguel, CA 92677",score:1,rating:"⚪ COLD",type:"SFR",reasons:["Luxury"],analysis:{estRent:6500,estRehab:0,arv:2100000,flip:{profit:100000,roi:5.0},rental:{cashflow:-7983}}},
+      {price:"$8,250,000",beds:4,baths:4,sqft:3705,address:"2501 Harbor View Dr, Corona Del Mar, CA 92625",score:1,rating:"⚪ COLD",type:"SFR",reasons:["Luxury"],analysis:{estRent:20000,estRehab:0,arv:9000000,flip:{profit:750000,roi:9.1},rental:{cashflow:-39294}}},
+      {price:"$820,000",beds:4,baths:2.5,sqft:1872,address:"1544 Dahlia Cir, Corona, CA 92882",score:1,rating:"⚪ COLD",type:"SFR",reasons:["4 bed"],analysis:{estRent:3600,estRehab:45000,arv:950000,flip:{profit:85000,roi:9.8},rental:{cashflow:-2374}}},
     ];
 
 async function loadData() {
