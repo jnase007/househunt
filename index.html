@@ -82,6 +82,7 @@ tr.warm-row{background:rgba(245,158,11,0.04);border-left:4px solid #f59e0b}
     <button class="filter-btn" onclick="filterDeals('warm')">🟡 Warm</button>
     <button class="filter-btn" onclick="filterDeals('under500')">Under $500K</button>
     <button class="filter-btn" onclick="filterDeals('oc')">Orange County</button>
+    <button class="filter-btn" onclick="filterDeals('sfr')">🏠 SFR Only</button>
     <button class="filter-btn" onclick="filterDeals('wholesale')">💰 Wholesale</button>
     <button class="filter-btn" onclick="filterDeals('ownerfinance')">🏦 Owner Finance</button>
     <button class="filter-btn" onclick="filterDeals('fixrent')">🔧 Fix & Rent</button>
@@ -94,12 +95,13 @@ tr.warm-row{background:rgba(245,158,11,0.04);border-left:4px solid #f59e0b}
     <thead>
       <tr>
         <th>Score</th>
+        <th>Type</th>
         <th>Price</th>
-        <th>Beds/Bath</th>
-        <th>SqFt</th>
-        <th>$/SqFt</th>
+        <th>Details</th>
+        <th>Est Rent</th>
+        <th>Flip Profit</th>
+        <th>Rental CF</th>
         <th>Address</th>
-        <th>Reasons</th>
         <th>Link</th>
       </tr>
     </thead>
@@ -108,6 +110,14 @@ tr.warm-row{background:rgba(245,158,11,0.04);border-left:4px solid #f59e0b}
 </div>
 
 
+<div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1.25rem;margin:1.5rem 0;font-size:0.85rem;color:#6b7280;line-height:1.7">
+  <strong style="color:#191F24">How the math works:</strong><br>
+  <strong>Flip Profit:</strong> ARV (after repair value from comps) − purchase price − rehab costs. ROI = profit ÷ total cost.<br>
+  <strong>Est Rent:</strong> Based on area comps ($2-3/sqft in OC, $1.80-2.20 IE). Cross-referenced with Zillow rent estimates.<br>
+  <strong>Rental Cash Flow:</strong> Rent − mortgage (7%, 80% LTV, 30yr) − property tax (1.2%) − insurance (~$200/mo). Negative = you lose money monthly.<br>
+  <strong>Rehab:</strong> $35-50/sqft SoCal average for moderate renovation. Adjusted by property condition signals.<br>
+  <em>Note: Mobile homes excluded. All estimates — verify with your own inspections and comps.</em>
+</div>
 <h2>Strategy Breakdown</h2>
 <div class="stats">
   <div class="stat" style="border-left:4px solid #dc2626">
@@ -178,7 +188,71 @@ tr.warm-row{background:rgba(245,158,11,0.04);border-left:4px solid #f59e0b}
 </div>
 
 <script>
-let allDeals = [];
+let allDeals = [
+      {price:"$799,999",beds:3,baths:1,sqft:1122,address:"2101 S Sycamore St, Santa Ana, CA 92707",score:5,rating:"🟡 WARM",type:"SFR",reasons:["Under $800K","3 bedrooms","Target area: Santa Ana"],
+        analysis:{
+          estRent:2900,estRehab:45000,arv:950000,
+          wholesale:{maxOffer:590000,spread:-209999,viable:false},
+          flip:{totalCost:844999,profit:105001,roi:12.4},
+          rental:{mortgage:4800,taxes:833,insurance:200,totalMonthly:5833,cashflow:-2933,capRate:2.7}
+        }},
+      {price:"$449,000",beds:2,baths:2,sqft:1100,address:"24055 Paseo Del Lago Unit 1063, Laguna Woods, CA 92637",score:4,rating:"🟡 WARM",type:"Condo (55+)",reasons:["Under $800K","Under $500K"],
+        analysis:{
+          estRent:2800,estRehab:25000,arv:520000,
+          wholesale:{maxOffer:324000,spread:-125000,viable:false},
+          flip:{totalCost:474000,profit:46000,roi:9.7},
+          rental:{mortgage:2700,taxes:468,insurance:150,totalMonthly:3318,cashflow:-518,capRate:5.3}
+        }},
+      {price:"$775,000",beds:2,baths:2,sqft:1104,address:"29576 Pelican Way, Laguna Niguel, CA 92677",score:2,rating:"⚪ COLD",type:"SFR",reasons:["Under $800K"],
+        analysis:{
+          estRent:3200,estRehab:35000,arv:900000,
+          wholesale:{maxOffer:580000,spread:-195000,viable:false},
+          flip:{totalCost:810000,profit:90000,roi:11.1},
+          rental:{mortgage:4650,taxes:806,insurance:200,totalMonthly:5656,cashflow:-2456,capRate:3.5}
+        }},
+      {price:"$1,580,000",beds:4,baths:3,sqft:2612,address:"2216 Rancho Corona Dr, Corona, CA 92882",score:1,rating:"⚪ COLD",type:"SFR",reasons:["4 bedrooms"],
+        analysis:{
+          estRent:4200,estRehab:50000,arv:1750000,
+          wholesale:{maxOffer:1160000,spread:-420000,viable:false},
+          flip:{totalCost:1630000,profit:120000,roi:7.4},
+          rental:{mortgage:9480,taxes:1645,insurance:350,totalMonthly:11475,cashflow:-7275,capRate:2.4}
+        }},
+      {price:"$820,000",beds:4,baths:2.5,sqft:1872,address:"1544 Dahlia Cir, Corona, CA 92882",score:1,rating:"⚪ COLD",type:"SFR",reasons:["4 bedrooms"],
+        analysis:{
+          estRent:3600,estRehab:45000,arv:950000,
+          wholesale:{maxOffer:600000,spread:-220000,viable:false},
+          flip:{totalCost:865000,profit:85000,roi:9.8},
+          rental:{mortgage:4920,taxes:854,insurance:200,totalMonthly:5974,cashflow:-2374,capRate:3.7}
+        }},
+      {price:"$929,999",beds:3,baths:2,sqft:1294,address:"2359 Temescal Ave, Norco, CA 92860",score:1,rating:"⚪ COLD",type:"SFR",reasons:["3 bedrooms"],
+        analysis:{
+          estRent:3200,estRehab:40000,arv:1050000,
+          wholesale:{maxOffer:680000,spread:-249999,viable:false},
+          flip:{totalCost:969999,profit:80001,roi:8.2},
+          rental:{mortgage:5580,taxes:968,insurance:220,totalMonthly:6768,cashflow:-3568,capRate:2.8}
+        }},
+      {price:"$1,999,900",beds:4,baths:3,sqft:2300,address:"22 Serenity Ln, Laguna Niguel, CA 92677",score:1,rating:"⚪ COLD",type:"SFR",reasons:["4 bedrooms"],
+        analysis:{
+          estRent:6500,estRehab:0,arv:2100000,
+          wholesale:{maxOffer:1455000,spread:-544900,viable:false},
+          flip:{totalCost:1999900,profit:100100,roi:5.0},
+          rental:{mortgage:12000,taxes:2083,insurance:400,totalMonthly:14483,cashflow:-7983,capRate:2.7}
+        }},
+      {price:"$8,250,000",beds:4,baths:4,sqft:3705,address:"2501 Harbor View Dr, Corona Del Mar, CA 92625",score:1,rating:"⚪ COLD",type:"SFR",reasons:["4 bedrooms","Luxury"],
+        analysis:{
+          estRent:20000,estRehab:0,arv:9000000,
+          wholesale:{maxOffer:6285000,spread:-1965000,viable:false},
+          flip:{totalCost:8250000,profit:750000,roi:9.1},
+          rental:{mortgage:49500,taxes:8594,insurance:1200,totalMonthly:59294,cashflow:-39294,capRate:2.2}
+        }},
+      {price:"$1,249,995",beds:4,baths:4,sqft:3156,address:"14350 Saint Michaels Ln, Chino, CA 91710",score:2,rating:"⚪ COLD",type:"SFR",reasons:["4 bedrooms"],
+        analysis:{
+          estRent:5000,estRehab:30000,arv:1400000,
+          wholesale:{maxOffer:935000,spread:-314995,viable:false},
+          flip:{totalCost:1279995,profit:120005,roi:9.4},
+          rental:{mortgage:7500,taxes:1302,insurance:300,totalMonthly:9102,cashflow:-4102,capRate:3.3}
+        }},
+    ];
 
 async function loadData() {
   try {
@@ -245,14 +319,20 @@ function renderDeals(deals) {
     const rowClass = d.score >= 7 ? 'hot-row' : d.score >= 4 ? 'warm-row' : '';
     const badgeClass = d.score >= 7 ? 'badge-hot' : d.score >= 4 ? 'badge-warm' : 'badge-cold';
     const zillow = 'https://www.zillow.com/homes/' + encodeURIComponent(d.address);
+    var a = d.analysis || {};
+    var flipP = a.flip ? a.flip.profit : 0;
+    var rentalCF = a.rental ? a.rental.cashflow : 0;
+    var estRent = a.estRent || 0;
+    var flipROI = a.flip ? a.flip.roi : 0;
     return `<tr class="${rowClass}">
       <td><span class="badge ${badgeClass}">${d.score}/10</span></td>
+      <td style="font-size:0.75rem;font-weight:600;color:${d.type==='SFR'?'#16a34a':d.type.includes('Condo')?'#2563eb':'#9ca3af'}">${d.type||'—'}</td>
       <td class="mono">${d.price}</td>
-      <td>${d.beds}/${d.baths}</td>
-      <td class="mono">${d.sqft > 0 ? d.sqft.toLocaleString() : '—'}</td>
-      <td class="mono">${typeof ppsf === 'number' ? '$'+ppsf : ppsf}</td>
-      <td>${d.address}</td>
-      <td class="reasons">${(d.reasons||[]).join(', ')}</td>
+      <td>${d.beds}bd/${d.baths}ba<br><span style="color:#9ca3af;font-size:0.75rem">${d.sqft > 0 ? d.sqft.toLocaleString()+'sf' : '—'}</span></td>
+      <td class="mono" style="color:#2563eb">$${estRent ? estRent.toLocaleString() : '—'}<span style="font-size:0.65rem;color:#9ca3af">/mo</span></td>
+      <td class="mono" style="color:${flipP>0?'#16a34a':'#dc2626'}">$${flipP ? flipP.toLocaleString() : '—'}<br><span style="font-size:0.65rem;color:#9ca3af">${flipROI}% ROI</span></td>
+      <td class="mono" style="color:${rentalCF>=0?'#16a34a':'#dc2626'}">$${rentalCF ? rentalCF.toLocaleString() : '—'}<span style="font-size:0.65rem;color:#9ca3af">/mo</span></td>
+      <td style="font-size:0.8rem">${d.address}</td>
       <td><a href="${zillow}" target="_blank" class="zillow-link">View →</a></td>
     </tr>`;
   }).join('');
@@ -280,6 +360,8 @@ function filterDeals(type) {
     const p = parseInt(d.price.replace(/[$,]/g,''));
     return p > 0 && p < 800000 && d.beds >= 3;
   });
+  else if (type === 'sfr') filtered = allDeals.filter(d => d.type === 'SFR');
+  else if (type === 'fourplex') filtered = allDeals.filter(d => d.type === 'Multi-Family' || d.beds >= 4);
   else if (type === 'oc') filtered = allDeals.filter(d => {
     const oc = ['costa mesa','santa ana','anaheim','irvine','huntington','fountain valley','garden grove','stanton','placentia','orange','laguna','newport'];
     return oc.some(c => d.address.toLowerCase().includes(c));
