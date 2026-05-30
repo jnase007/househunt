@@ -6,47 +6,64 @@
 <title>FSBO Deal Hunter — SoCal</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#0a0e1a;color:#e8e4d9;line-height:1.6}
-.container{max-width:1200px;margin:0 auto;padding:1.5rem}
-h1{font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:0.25rem}
-h2{font-size:1.2rem;font-weight:700;color:#4fc3f7;margin:2rem 0 1rem;border-bottom:1px solid rgba(79,195,247,0.2);padding-bottom:0.5rem}
-.sub{color:rgba(232,228,217,0.5);font-size:0.85rem;margin-bottom:1.5rem}
+body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#F5F3EF;color:#191F24;line-height:1.6}
+.container{max-width:1200px;margin:0 auto;padding:2rem}
+h1{font-size:2.2rem;font-weight:900;color:#191F24;margin-bottom:0.25rem;letter-spacing:-0.03em}
+h2{font-size:1.3rem;font-weight:700;color:#2563eb;margin:2.5rem 0 1rem;border-bottom:2px solid #e5e7eb;padding-bottom:0.5rem}
+.sub{color:#6b7280;font-size:0.9rem;margin-bottom:1.5rem}
 .stats{display:flex;gap:1rem;flex-wrap:wrap;margin:1.5rem 0}
-.stat{flex:1;min-width:140px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:1rem;text-align:center}
-.stat-num{font-size:1.8rem;font-weight:800;font-family:'SF Mono',monospace}
-.stat-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:rgba(232,228,217,0.4);margin-top:0.25rem}
+.stat{flex:1;min-width:140px;background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:1.25rem;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.06)}
+.stat-num{font-size:2rem;font-weight:800;font-family:'SF Mono',monospace;color:#191F24}
+.stat-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:#9ca3af;margin-top:0.25rem}
 .hot{color:#ef4444}.warm{color:#f59e0b}.cold{color:#6b7280}.green{color:#22c55e}
 table{width:100%;border-collapse:collapse;font-size:0.85rem;margin:1rem 0}
-th{text-align:left;padding:0.6rem;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em;color:rgba(232,228,217,0.4);border-bottom:1px solid rgba(255,255,255,0.1);position:sticky;top:0;background:#0a0e1a}
-td{padding:0.6rem;border-bottom:1px solid rgba(255,255,255,0.04)}
-tr:hover{background:rgba(255,255,255,0.03)}
-tr.hot-row{background:rgba(239,68,68,0.06);border-left:3px solid #ef4444}
-tr.warm-row{background:rgba(245,158,11,0.04);border-left:3px solid #f59e0b}
+th{text-align:left;padding:0.75rem;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em;color:#6b7280;border-bottom:2px solid #e5e7eb;position:sticky;top:0;background:#F5F3EF}
+td{padding:0.75rem;border-bottom:1px solid #f3f4f6}
+tr:hover{background:rgba(37,99,235,0.04)}
+tr.hot-row{background:rgba(239,68,68,0.05);border-left:4px solid #ef4444}
+tr.warm-row{background:rgba(245,158,11,0.04);border-left:4px solid #f59e0b}
 .mono{font-family:'SF Mono',monospace;font-weight:600}
-.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:700}
+.badge{display:inline-block;padding:3px 10px;border-radius:6px;font-size:0.72rem;font-weight:700}
 .badge-hot{background:rgba(239,68,68,0.15);color:#ef4444}
 .badge-warm{background:rgba(245,158,11,0.15);color:#f59e0b}
 .badge-cold{background:rgba(107,114,128,0.15);color:#6b7280}
 .filters{display:flex;gap:0.5rem;margin:1rem 0;flex-wrap:wrap}
-.filter-btn{padding:6px 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03);color:rgba(232,228,217,0.6);font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s}
-.filter-btn:hover,.filter-btn.active{background:rgba(79,195,247,0.1);border-color:rgba(79,195,247,0.3);color:#4fc3f7}
-.search{padding:8px 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03);color:#fff;font-size:0.85rem;width:250px}
-.search:focus{outline:none;border-color:rgba(79,195,247,0.3)}
-.refresh-btn{padding:8px 16px;border-radius:8px;border:none;background:linear-gradient(135deg,#4fc3f7,#CC22FF);color:#fff;font-size:0.8rem;font-weight:700;cursor:pointer}
-.zillow-link{color:#4fc3f7;text-decoration:none;font-size:0.8rem}
+.filter-btn{padding:7px 16px;border-radius:8px;border:1px solid #d1d5db;background:#fff;color:#6b7280;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s}
+.filter-btn:hover,.filter-btn.active{background:#2563eb;border-color:#2563eb;color:#fff}
+.search{padding:8px 14px;border-radius:8px;border:1px solid #d1d5db;background:#fff;color:#191F24;font-size:0.85rem;width:250px}
+.search:focus{outline:none;border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,0.1)}
+.refresh-btn{padding:10px 20px;border-radius:10px;border:none;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:0.85rem;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(37,99,235,0.3)}
+.zillow-link{color:#2563eb;text-decoration:none;font-size:0.8rem;font-weight:600}
 .zillow-link:hover{text-decoration:underline}
-.last-updated{font-size:0.7rem;color:rgba(232,228,217,0.3);margin-top:0.5rem}
-.reasons{font-size:0.75rem;color:rgba(232,228,217,0.4);margin-top:0.25rem}
+.last-updated{font-size:0.7rem;color:#9ca3af;margin-top:0.5rem}
+.reasons{font-size:0.75rem;color:#9ca3af;margin-top:0.25rem}
 .header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+@media print{
+  body{background:#fff!important}
+  .refresh-btn,.filter-btn,.search,.filters{display:none!important}
+  .stat{box-shadow:none;border:1px solid #ddd}
+  tr.hot-row{background:rgba(239,68,68,0.08)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  tr.warm-row{background:rgba(245,158,11,0.06)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .badge{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  h1::after{content:' — Printed ' attr(data-date);font-size:0.5em;color:#999;font-weight:400}
+}
 @media(max-width:768px){table{font-size:0.75rem}.stats{flex-direction:column}.stat{min-width:auto}}
 </style>
 </head>
 <body>
 <div class="container">
-<div class="header">
+<div style="background:linear-gradient(135deg,#1e3a5f,#2563eb,#7c3aed);border-radius:16px;padding:2rem 2.5rem;margin-bottom:2rem;position:relative;overflow:hidden">
+  <div style="position:absolute;top:0;right:0;width:200px;height:200px;background:radial-gradient(circle,rgba(255,255,255,0.1),transparent 70%);border-radius:50%"></div>
+  <div style="position:relative;z-index:1">
+    <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:rgba(255,255,255,0.7);margin-bottom:0.5rem">Deal Pipeline — Live</div>
+    <h1 style="color:#fff;font-size:2rem;margin-bottom:0.25rem">🏠 FSBO Deal Hunter</h1>
+    <p style="color:rgba(255,255,255,0.7);font-size:0.9rem">Southern California — Orange County & LA · Scored & Ready to Call</p>
+  </div>
+</div>
+<div class="header" style="display:none">
   <div>
-    <h1>🏠 FSBO Deal Hunter</h1>
-    <p class="sub">Southern California — Orange County & LA</p>
+    
+    
   </div>
   <button class="refresh-btn" onclick="loadData()">↻ Refresh Data</button>
 </div>
@@ -93,24 +110,24 @@ tr.warm-row{background:rgba(245,158,11,0.04);border-left:3px solid #f59e0b}
 
 <h2>Strategy Breakdown</h2>
 <div class="stats">
-  <div class="stat" style="border-left:3px solid #ef4444">
-    <div class="stat-num" style="font-size:1rem;color:#ef4444">Wholesale</div>
+  <div class="stat" style="border-left:4px solid #dc2626">
+    <div class="stat-num" style="font-size:1rem;color:#dc2626">Wholesale</div>
     <div class="stat-label" style="line-height:1.5;margin-top:0.5rem;text-transform:none;letter-spacing:0">
       Under $500K · High equity · Motivated sellers<br>
       Assign contract for $10-25K fee<br>
       Best for: Quick cash, no rehab needed
     </div>
   </div>
-  <div class="stat" style="border-left:3px solid #4fc3f7">
-    <div class="stat-num" style="font-size:1rem;color:#4fc3f7">Owner Finance</div>
+  <div class="stat" style="border-left:4px solid #2563eb">
+    <div class="stat-num" style="font-size:1rem;color:#2563eb">Owner Finance</div>
     <div class="stat-label" style="line-height:1.5;margin-top:0.5rem;text-transform:none;letter-spacing:0">
       Seller carries the note · No bank needed<br>
       Look for: Free & clear properties, older owners, long DOM<br>
       Best for: Low money down, cash flow from day 1
     </div>
   </div>
-  <div class="stat" style="border-left:3px solid #22c55e">
-    <div class="stat-num" style="font-size:1rem;color:#22c55e">Fix & Rent</div>
+  <div class="stat" style="border-left:4px solid #16a34a">
+    <div class="stat-num" style="font-size:1rem;color:#16a34a">Fix & Rent</div>
     <div class="stat-label" style="line-height:1.5;margin-top:0.5rem;text-transform:none;letter-spacing:0">
       3+ beds · Under $800K · Needs work<br>
       Rehab + rent for monthly cash flow<br>
@@ -124,27 +141,27 @@ tr.warm-row{background:rgba(245,158,11,0.04);border-left:3px solid #f59e0b}
   <div class="stat">
     <div class="stat-label" style="margin-bottom:0.5rem">Wholesale Offer</div>
     <div style="display:flex;flex-direction:column;gap:4px;font-size:0.8rem">
-      <div>ARV: <input type="number" id="arv" value="600000" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:4px 8px;border-radius:4px;width:100px;font-family:monospace" oninput="calcWholesale()"></div>
-      <div>Repairs: <input type="number" id="repairs" value="30000" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:4px 8px;border-radius:4px;width:100px;font-family:monospace" oninput="calcWholesale()"></div>
-      <div>Your Fee: <input type="number" id="fee" value="15000" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:4px 8px;border-radius:4px;width:100px;font-family:monospace" oninput="calcWholesale()"></div>
+      <div>ARV: <input type="number" id="arv" value="600000" style="background:#f9fafb;border:1px solid #d1d5db;color:#191F24;padding:6px 10px;border-radius:6px;width:110px;font-family:monospace" oninput="calcWholesale()"></div>
+      <div>Repairs: <input type="number" id="repairs" value="30000" style="background:#f9fafb;border:1px solid #d1d5db;color:#191F24;padding:6px 10px;border-radius:6px;width:110px;font-family:monospace" oninput="calcWholesale()"></div>
+      <div>Your Fee: <input type="number" id="fee" value="15000" style="background:#f9fafb;border:1px solid #d1d5db;color:#191F24;padding:6px 10px;border-radius:6px;width:110px;font-family:monospace" oninput="calcWholesale()"></div>
       <div style="margin-top:0.5rem;font-weight:700;color:#ef4444" id="maxOffer">Max Offer: $375,000</div>
     </div>
   </div>
   <div class="stat">
     <div class="stat-label" style="margin-bottom:0.5rem">Owner Finance Payment</div>
     <div style="display:flex;flex-direction:column;gap:4px;font-size:0.8rem">
-      <div>Price: <input type="number" id="ofPrice" value="500000" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:4px 8px;border-radius:4px;width:100px;font-family:monospace" oninput="calcOwnerFin()"></div>
-      <div>Down: <input type="number" id="ofDown" value="50000" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:4px 8px;border-radius:4px;width:100px;font-family:monospace" oninput="calcOwnerFin()"></div>
-      <div>Rate %: <input type="number" id="ofRate" value="6" step="0.5" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:4px 8px;border-radius:4px;width:100px;font-family:monospace" oninput="calcOwnerFin()"></div>
+      <div>Price: <input type="number" id="ofPrice" value="500000" style="background:#f9fafb;border:1px solid #d1d5db;color:#191F24;padding:6px 10px;border-radius:6px;width:110px;font-family:monospace" oninput="calcOwnerFin()"></div>
+      <div>Down: <input type="number" id="ofDown" value="50000" style="background:#f9fafb;border:1px solid #d1d5db;color:#191F24;padding:6px 10px;border-radius:6px;width:110px;font-family:monospace" oninput="calcOwnerFin()"></div>
+      <div>Rate %: <input type="number" id="ofRate" value="6" step="0.5" style="background:#f9fafb;border:1px solid #d1d5db;color:#191F24;padding:6px 10px;border-radius:6px;width:110px;font-family:monospace" oninput="calcOwnerFin()"></div>
       <div style="margin-top:0.5rem;font-weight:700;color:#4fc3f7" id="ofPayment">Monthly: $2,698</div>
     </div>
   </div>
   <div class="stat">
     <div class="stat-label" style="margin-bottom:0.5rem">Rental Cash Flow</div>
     <div style="display:flex;flex-direction:column;gap:4px;font-size:0.8rem">
-      <div>Purchase: <input type="number" id="rentPrice" value="500000" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:4px 8px;border-radius:4px;width:100px;font-family:monospace" oninput="calcRent()"></div>
-      <div>Rent/mo: <input type="number" id="rentAmount" value="3000" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:4px 8px;border-radius:4px;width:100px;font-family:monospace" oninput="calcRent()"></div>
-      <div>Mortgage: <input type="number" id="rentMtg" value="2500" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:4px 8px;border-radius:4px;width:100px;font-family:monospace" oninput="calcRent()"></div>
+      <div>Purchase: <input type="number" id="rentPrice" value="500000" style="background:#f9fafb;border:1px solid #d1d5db;color:#191F24;padding:6px 10px;border-radius:6px;width:110px;font-family:monospace" oninput="calcRent()"></div>
+      <div>Rent/mo: <input type="number" id="rentAmount" value="3000" style="background:#f9fafb;border:1px solid #d1d5db;color:#191F24;padding:6px 10px;border-radius:6px;width:110px;font-family:monospace" oninput="calcRent()"></div>
+      <div>Mortgage: <input type="number" id="rentMtg" value="2500" style="background:#f9fafb;border:1px solid #d1d5db;color:#191F24;padding:6px 10px;border-radius:6px;width:110px;font-family:monospace" oninput="calcRent()"></div>
       <div style="margin-top:0.5rem;font-weight:700;color:#22c55e" id="cashFlow">Cash Flow: $500/mo</div>
     </div>
   </div>
@@ -154,9 +171,9 @@ tr.warm-row{background:rgba(245,158,11,0.04);border-left:3px solid #f59e0b}
 
 <h2>Data Sources</h2>
 <div class="stats">
-  <div class="stat"><div class="stat-num" style="font-size:1rem;color:#4fc3f7">Zillow</div><div class="stat-label">FSBO Search Saved + Email Alerts</div></div>
-  <div class="stat"><div class="stat-num" style="font-size:1rem;color:#4fc3f7">PropStream</div><div class="stat-label">OC FSBO Deals — Daily Alerts</div></div>
-  <div class="stat"><div class="stat-num" style="font-size:1rem;color:#4fc3f7">Craigslist</div><div class="stat-label">OC Real Estate FSBO</div></div>
+  <div class="stat"><div class="stat-num" style="font-size:1rem;color:#2563eb">Zillow</div><div class="stat-label">FSBO Search Saved + Email Alerts</div></div>
+  <div class="stat"><div class="stat-num" style="font-size:1rem;color:#2563eb">PropStream</div><div class="stat-label">OC FSBO Deals — Daily Alerts</div></div>
+  <div class="stat"><div class="stat-num" style="font-size:1rem;color:#2563eb">Craigslist</div><div class="stat-label">OC Real Estate FSBO</div></div>
 </div>
 </div>
 
