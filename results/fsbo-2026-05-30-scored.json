@@ -1,0 +1,253 @@
+{
+  "date": "2026-05-30",
+  "source": "Zillow FSBO - Orange County",
+  "total": 18,
+  "listings": [
+    {
+      "price": "$265,000",
+      "beds": 4,
+      "baths": 2,
+      "sqft": 1,
+      "address": "10550 Western Ave Space 9, Stanton, CA 90680",
+      "score": 8,
+      "rating": "\ud83d\udd25 HOT",
+      "reasons": [
+        "Under $800K",
+        "Under $500K \u2014 wholesale potential",
+        "Under $300K \u2014 high wholesale potential",
+        "4 bedrooms",
+        "Target area: Stanton"
+      ]
+    },
+    {
+      "price": "$192,500",
+      "beds": 3,
+      "baths": 2,
+      "sqft": 1152,
+      "address": "21650 Temescal Canyon Rd Space 60, Corona, CA 92883",
+      "score": 7,
+      "rating": "\ud83d\udd25 HOT",
+      "reasons": [
+        "Under $800K",
+        "Under $500K \u2014 wholesale potential",
+        "Under $300K \u2014 high wholesale potential",
+        "3 bedrooms",
+        "$167/sqft \u2014 below area avg"
+      ]
+    },
+    {
+      "price": "$399,999",
+      "beds": 2,
+      "baths": 2,
+      "sqft": 929,
+      "address": "212 S Kraemer Blvd Unit 1204, Placentia, CA 92870",
+      "score": 6,
+      "rating": "\ud83d\udfe1 WARM",
+      "reasons": [
+        "Under $800K",
+        "Under $500K \u2014 wholesale potential",
+        "Target area: Placentia"
+      ]
+    },
+    {
+      "price": "$399,000",
+      "beds": 2,
+      "baths": 1,
+      "sqft": 845,
+      "address": "212 S Kraemer Blvd Unit 2611, Placentia, CA 92870",
+      "score": 6,
+      "rating": "\ud83d\udfe1 WARM",
+      "reasons": [
+        "Under $800K",
+        "Under $500K \u2014 wholesale potential",
+        "Target area: Placentia"
+      ]
+    },
+    {
+      "price": "$265,000",
+      "beds": 2,
+      "baths": 2,
+      "sqft": 1213,
+      "address": "15980 Grand Ave Spc M22, Lake Elsinore, CA 92530",
+      "score": 6,
+      "rating": "\ud83d\udfe1 WARM",
+      "reasons": [
+        "Under $800K",
+        "Under $500K \u2014 wholesale potential",
+        "Under $300K \u2014 high wholesale potential",
+        "$218/sqft \u2014 below area avg"
+      ]
+    },
+    {
+      "price": "$155,000",
+      "beds": 2,
+      "baths": 2,
+      "sqft": 1440,
+      "address": "20739 Lycoming St Space 74, Walnut, CA 91789",
+      "score": 6,
+      "rating": "\ud83d\udfe1 WARM",
+      "reasons": [
+        "Under $800K",
+        "Under $500K \u2014 wholesale potential",
+        "Under $300K \u2014 high wholesale potential",
+        "$108/sqft \u2014 below area avg"
+      ]
+    },
+    {
+      "price": "$139,900",
+      "beds": 1,
+      "baths": 1,
+      "sqft": 880,
+      "address": "15980 Grand Ave Space M33, Lake Elsinore, CA 92530",
+      "score": 6,
+      "rating": "\ud83d\udfe1 WARM",
+      "reasons": [
+        "Under $800K",
+        "Under $500K \u2014 wholesale potential",
+        "Under $300K \u2014 high wholesale potential",
+        "$159/sqft \u2014 below area avg"
+      ]
+    },
+    {
+      "price": "$550,000",
+      "beds": 3,
+      "baths": 2,
+      "sqft": 1088,
+      "address": "2511 W Sunflower Ave Unit H3, Santa Ana, CA 92704",
+      "score": 5,
+      "rating": "\ud83d\udfe1 WARM",
+      "reasons": [
+        "Under $800K",
+        "3 bedrooms",
+        "Target area: Santa Ana"
+      ]
+    },
+    {
+      "price": "$799,999",
+      "beds": 3,
+      "baths": 1,
+      "sqft": 1122,
+      "address": "2101 S Sycamore St, Santa Ana, CA 92707",
+      "score": 5,
+      "rating": "\ud83d\udfe1 WARM",
+      "reasons": [
+        "Under $800K",
+        "3 bedrooms",
+        "Target area: Santa Ana"
+      ]
+    },
+    {
+      "price": "$110,000",
+      "beds": 0,
+      "baths": 0,
+      "sqft": 0,
+      "address": "0 Regal Vista Ct, Lake Mathews, CA 92570",
+      "notes": "2.19 acre lot",
+      "score": 5,
+      "rating": "\ud83d\udfe1 WARM",
+      "reasons": [
+        "Under $800K",
+        "Under $500K \u2014 wholesale potential",
+        "Under $300K \u2014 high wholesale potential"
+      ]
+    },
+    {
+      "price": "$449,000",
+      "beds": 2,
+      "baths": 2,
+      "sqft": 1100,
+      "address": "24055 Paseo Del Lago Unit 1063, Laguna Woods, CA 92637",
+      "score": 4,
+      "rating": "\ud83d\udfe1 WARM",
+      "reasons": [
+        "Under $800K",
+        "Under $500K \u2014 wholesale potential"
+      ]
+    },
+    {
+      "price": "$775,000",
+      "beds": 2,
+      "baths": 2,
+      "sqft": 1104,
+      "address": "29576 Pelican Way, Laguna Niguel, CA 92677",
+      "score": 2,
+      "rating": "\u26aa COLD",
+      "reasons": [
+        "Under $800K"
+      ]
+    },
+    {
+      "price": "$1,249,995",
+      "beds": 4,
+      "baths": 4,
+      "sqft": 3156,
+      "address": "14350 Saint Michaels Ln, Chino, CA 91710",
+      "score": 2,
+      "rating": "\u26aa COLD",
+      "reasons": [
+        "4 bedrooms",
+        "$396/sqft \u2014 below area avg"
+      ]
+    },
+    {
+      "price": "$1,999,900",
+      "beds": 4,
+      "baths": 3,
+      "sqft": 2300,
+      "address": "22 Serenity Ln, Laguna Niguel, CA 92677",
+      "score": 1,
+      "rating": "\u26aa COLD",
+      "reasons": [
+        "4 bedrooms"
+      ]
+    },
+    {
+      "price": "$8,250,000",
+      "beds": 4,
+      "baths": 4,
+      "sqft": 3705,
+      "address": "2501 Harbor View Dr, Corona Del Mar, CA 92625",
+      "score": 1,
+      "rating": "\u26aa COLD",
+      "reasons": [
+        "4 bedrooms"
+      ]
+    },
+    {
+      "price": "$1,580,000",
+      "beds": 4,
+      "baths": 3,
+      "sqft": 2612,
+      "address": "2216 Rancho Corona Dr, Corona, CA 92882",
+      "score": 1,
+      "rating": "\u26aa COLD",
+      "reasons": [
+        "4 bedrooms"
+      ]
+    },
+    {
+      "price": "$820,000",
+      "beds": 4,
+      "baths": 2.5,
+      "sqft": 1872,
+      "address": "1544 Dahlia Cir, Corona, CA 92882",
+      "score": 1,
+      "rating": "\u26aa COLD",
+      "reasons": [
+        "4 bedrooms"
+      ]
+    },
+    {
+      "price": "$929,999",
+      "beds": 3,
+      "baths": 2,
+      "sqft": 1294,
+      "address": "2359 Temescal Ave, Norco, CA 92860",
+      "score": 1,
+      "rating": "\u26aa COLD",
+      "reasons": [
+        "3 bedrooms"
+      ]
+    }
+  ]
+}

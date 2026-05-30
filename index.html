@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FSBO Deal Hunter — SoCal</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#0a0e1a;color:#e8e4d9;line-height:1.6}
+.container{max-width:1200px;margin:0 auto;padding:1.5rem}
+h1{font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:0.25rem}
+h2{font-size:1.2rem;font-weight:700;color:#4fc3f7;margin:2rem 0 1rem;border-bottom:1px solid rgba(79,195,247,0.2);padding-bottom:0.5rem}
+.sub{color:rgba(232,228,217,0.5);font-size:0.85rem;margin-bottom:1.5rem}
+.stats{display:flex;gap:1rem;flex-wrap:wrap;margin:1.5rem 0}
+.stat{flex:1;min-width:140px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:1rem;text-align:center}
+.stat-num{font-size:1.8rem;font-weight:800;font-family:'SF Mono',monospace}
+.stat-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:rgba(232,228,217,0.4);margin-top:0.25rem}
+.hot{color:#ef4444}.warm{color:#f59e0b}.cold{color:#6b7280}.green{color:#22c55e}
+table{width:100%;border-collapse:collapse;font-size:0.85rem;margin:1rem 0}
+th{text-align:left;padding:0.6rem;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em;color:rgba(232,228,217,0.4);border-bottom:1px solid rgba(255,255,255,0.1);position:sticky;top:0;background:#0a0e1a}
+td{padding:0.6rem;border-bottom:1px solid rgba(255,255,255,0.04)}
+tr:hover{background:rgba(255,255,255,0.03)}
+tr.hot-row{background:rgba(239,68,68,0.06);border-left:3px solid #ef4444}
+tr.warm-row{background:rgba(245,158,11,0.04);border-left:3px solid #f59e0b}
+.mono{font-family:'SF Mono',monospace;font-weight:600}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:700}
+.badge-hot{background:rgba(239,68,68,0.15);color:#ef4444}
+.badge-warm{background:rgba(245,158,11,0.15);color:#f59e0b}
+.badge-cold{background:rgba(107,114,128,0.15);color:#6b7280}
+.filters{display:flex;gap:0.5rem;margin:1rem 0;flex-wrap:wrap}
+.filter-btn{padding:6px 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03);color:rgba(232,228,217,0.6);font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s}
+.filter-btn:hover,.filter-btn.active{background:rgba(79,195,247,0.1);border-color:rgba(79,195,247,0.3);color:#4fc3f7}
+.search{padding:8px 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03);color:#fff;font-size:0.85rem;width:250px}
+.search:focus{outline:none;border-color:rgba(79,195,247,0.3)}
+.refresh-btn{padding:8px 16px;border-radius:8px;border:none;background:linear-gradient(135deg,#4fc3f7,#CC22FF);color:#fff;font-size:0.8rem;font-weight:700;cursor:pointer}
+.zillow-link{color:#4fc3f7;text-decoration:none;font-size:0.8rem}
+.zillow-link:hover{text-decoration:underline}
+.last-updated{font-size:0.7rem;color:rgba(232,228,217,0.3);margin-top:0.5rem}
+.reasons{font-size:0.75rem;color:rgba(232,228,217,0.4);margin-top:0.25rem}
+.header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+@media(max-width:768px){table{font-size:0.75rem}.stats{flex-direction:column}.stat{min-width:auto}}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+  <div>
+    <h1>🏠 FSBO Deal Hunter</h1>
+    <p class="sub">Southern California — Orange County & LA</p>
+  </div>
+  <button class="refresh-btn" onclick="loadData()">↻ Refresh Data</button>
+</div>
+
+<div class="stats" id="statsCards">
+  <div class="stat"><div class="stat-num" id="totalCount">—</div><div class="stat-label">Total Listings</div></div>
+  <div class="stat"><div class="stat-num hot" id="hotCount">—</div><div class="stat-label">Hot Leads (7+)</div></div>
+  <div class="stat"><div class="stat-num warm" id="warmCount">—</div><div class="stat-label">Warm Leads (4-6)</div></div>
+  <div class="stat"><div class="stat-num green" id="avgPrice">—</div><div class="stat-label">Avg Price (Under $800K)</div></div>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterDeals('all')">All</button>
+    <button class="filter-btn" onclick="filterDeals('hot')">🔥 Hot</button>
+    <button class="filter-btn" onclick="filterDeals('warm')">🟡 Warm</button>
+    <button class="filter-btn" onclick="filterDeals('under500')">Under $500K</button>
+    <button class="filter-btn" onclick="filterDeals('oc')">Orange County</button>
+    <button class="filter-btn" onclick="filterDeals('wholesale')">💰 Wholesale</button>
+    <button class="filter-btn" onclick="filterDeals('ownerfinance')">🏦 Owner Finance</button>
+    <button class="filter-btn" onclick="filterDeals('fixrent')">🔧 Fix & Rent</button>
+  </div>
+  <input type="text" class="search" placeholder="Search by city or address..." oninput="searchDeals(this.value)">
+</div>
+
+<div style="overflow-x:auto">
+  <table>
+    <thead>
+      <tr>
+        <th>Score</th>
+        <th>Price</th>
+        <th>Beds/Bath</th>
+        <th>SqFt</th>
+        <th>$/SqFt</th>
+        <th>Address</th>
+        <th>Reasons</th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody id="dealTable"></tbody>
+  </table>
+</div>
+
+
+<h2>Strategy Breakdown</h2>
+<div class="stats">
+  <div class="stat" style="border-left:3px solid #ef4444">
+    <div class="stat-num" style="font-size:1rem;color:#ef4444">Wholesale</div>
+    <div class="stat-label" style="line-height:1.5;margin-top:0.5rem;text-transform:none;letter-spacing:0">
+      Under $500K · High equity · Motivated sellers<br>
+      Assign contract for $10-25K fee<br>
+      Best for: Quick cash, no rehab needed
+    </div>
+  </div>
+  <div class="stat" style="border-left:3px solid #4fc3f7">
+    <div class="stat-num" style="font-size:1rem;color:#4fc3f7">Owner Finance</div>
+    <div class="stat-label" style="line-height:1.5;margin-top:0.5rem;text-transform:none;letter-spacing:0">
+      Seller carries the note · No bank needed<br>
+      Look for: Free & clear properties, older owners, long DOM<br>
+      Best for: Low money down, cash flow from day 1
+    </div>
+  </div>
+  <div class="stat" style="border-left:3px solid #22c55e">
+    <div class="stat-num" style="font-size:1rem;color:#22c55e">Fix & Rent</div>
+    <div class="stat-label" style="line-height:1.5;margin-top:0.5rem;text-transform:none;letter-spacing:0">
+      3+ beds · Under $800K · Needs work<br>
+      Rehab + rent for monthly cash flow<br>
+      Best for: Long-term wealth, passive income
+    </div>
+  </div>
+</div>
+
+<h2>Quick Math Calculators</h2>
+<div class="stats">
+  <div class="stat">
+    <div class="stat-label" style="margin-bottom:0.5rem">Wholesale Offer</div>
+    <div style="display:flex;flex-direction:column;gap:4px;font-size:0.8rem">
+      <div>ARV: <input type="number" id="arv" value="600000" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:4px 8px;border-radius:4px;width:100px;font-family:monospace" oninput="calcWholesale()"></div>
+      <div>Repairs: <input type="number" id="repairs" value="30000" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:4px 8px;border-radius:4px;width:100px;font-family:monospace" oninput="calcWholesale()"></div>
+      <div>Your Fee: <input type="number" id="fee" value="15000" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:4px 8px;border-radius:4px;width:100px;font-family:monospace" oninput="calcWholesale()"></div>
+      <div style="margin-top:0.5rem;font-weight:700;color:#ef4444" id="maxOffer">Max Offer: $375,000</div>
+    </div>
+  </div>
+  <div class="stat">
+    <div class="stat-label" style="margin-bottom:0.5rem">Owner Finance Payment</div>
+    <div style="display:flex;flex-direction:column;gap:4px;font-size:0.8rem">
+      <div>Price: <input type="number" id="ofPrice" value="500000" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:4px 8px;border-radius:4px;width:100px;font-family:monospace" oninput="calcOwnerFin()"></div>
+      <div>Down: <input type="number" id="ofDown" value="50000" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:4px 8px;border-radius:4px;width:100px;font-family:monospace" oninput="calcOwnerFin()"></div>
+      <div>Rate %: <input type="number" id="ofRate" value="6" step="0.5" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:4px 8px;border-radius:4px;width:100px;font-family:monospace" oninput="calcOwnerFin()"></div>
+      <div style="margin-top:0.5rem;font-weight:700;color:#4fc3f7" id="ofPayment">Monthly: $2,698</div>
+    </div>
+  </div>
+  <div class="stat">
+    <div class="stat-label" style="margin-bottom:0.5rem">Rental Cash Flow</div>
+    <div style="display:flex;flex-direction:column;gap:4px;font-size:0.8rem">
+      <div>Purchase: <input type="number" id="rentPrice" value="500000" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:4px 8px;border-radius:4px;width:100px;font-family:monospace" oninput="calcRent()"></div>
+      <div>Rent/mo: <input type="number" id="rentAmount" value="3000" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:4px 8px;border-radius:4px;width:100px;font-family:monospace" oninput="calcRent()"></div>
+      <div>Mortgage: <input type="number" id="rentMtg" value="2500" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:4px 8px;border-radius:4px;width:100px;font-family:monospace" oninput="calcRent()"></div>
+      <div style="margin-top:0.5rem;font-weight:700;color:#22c55e" id="cashFlow">Cash Flow: $500/mo</div>
+    </div>
+  </div>
+</div>
+
+<p class="last-updated" id="lastUpdated"></p>
+
+<h2>Data Sources</h2>
+<div class="stats">
+  <div class="stat"><div class="stat-num" style="font-size:1rem;color:#4fc3f7">Zillow</div><div class="stat-label">FSBO Search Saved + Email Alerts</div></div>
+  <div class="stat"><div class="stat-num" style="font-size:1rem;color:#4fc3f7">PropStream</div><div class="stat-label">OC FSBO Deals — Daily Alerts</div></div>
+  <div class="stat"><div class="stat-num" style="font-size:1rem;color:#4fc3f7">Craigslist</div><div class="stat-label">OC Real Estate FSBO</div></div>
+</div>
+</div>
+
+<script>
+let allDeals = [];
+
+async function loadData() {
+  try {
+    // Try to load the latest scored results
+    const files = ['results/fsbo-2026-05-30-scored.json'];
+    for (const file of files) {
+      try {
+        const resp = await fetch(file);
+        if (resp.ok) {
+          const data = await resp.json();
+          allDeals = data.listings || [];
+          renderDeals(allDeals);
+          document.getElementById('lastUpdated').textContent = 'Last updated: ' + data.date + ' | Source: ' + (data.source || 'Multiple');
+          return;
+        }
+      } catch(e) {}
+    }
+    // Fallback — hardcoded data from today's scrape
+    allDeals = [
+      {price:"$265,000",beds:4,baths:2,sqft:1,address:"10550 Western Ave Space 9, Stanton, CA 90680",score:8,rating:"🔥 HOT",reasons:["Under $800K","Under $500K","Under $300K","4 bedrooms","Target area: Stanton"]},
+      {price:"$192,500",beds:3,baths:2,sqft:1152,address:"21650 Temescal Canyon Rd Space 60, Corona, CA 92883",score:7,rating:"🔥 HOT",reasons:["Under $800K","Under $500K","Under $300K","3 bedrooms","$167/sqft"]},
+      {price:"$399,999",beds:2,baths:2,sqft:929,address:"212 S Kraemer Blvd Unit 1204, Placentia, CA 92870",score:6,rating:"🟡 WARM",reasons:["Under $800K","Under $500K","Target area: Placentia"]},
+      {price:"$399,000",beds:2,baths:1,sqft:845,address:"212 S Kraemer Blvd Unit 2611, Placentia, CA 92870",score:6,rating:"🟡 WARM",reasons:["Under $800K","Under $500K","Target area: Placentia"]},
+      {price:"$265,000",beds:2,baths:2,sqft:1213,address:"15980 Grand Ave Spc M22, Lake Elsinore, CA 92530",score:6,rating:"🟡 WARM",reasons:["Under $800K","Under $500K","Under $300K","$218/sqft"]},
+      {price:"$155,000",beds:2,baths:2,sqft:1440,address:"20739 Lycoming St Space 74, Walnut, CA 91789",score:6,rating:"🟡 WARM",reasons:["Under $800K","Under $500K","Under $300K","$108/sqft"]},
+      {price:"$139,900",beds:1,baths:1,sqft:880,address:"15980 Grand Ave Space M33, Lake Elsinore, CA 92530",score:6,rating:"🟡 WARM",reasons:["Under $800K","Under $500K","Under $300K","$159/sqft"]},
+      {price:"$550,000",beds:3,baths:2,sqft:1088,address:"2511 W Sunflower Ave Unit H3, Santa Ana, CA 92704",score:5,rating:"🟡 WARM",reasons:["Under $800K","3 bedrooms","Target area: Santa Ana"]},
+      {price:"$799,999",beds:3,baths:1,sqft:1122,address:"2101 S Sycamore St, Santa Ana, CA 92707",score:5,rating:"🟡 WARM",reasons:["Under $800K","3 bedrooms","Target area: Santa Ana"]},
+      {price:"$110,000",beds:0,baths:0,sqft:0,address:"0 Regal Vista Ct, Lake Mathews, CA 92570",score:5,rating:"🟡 WARM",reasons:["Under $800K","Under $500K","Under $300K","2.19 acre lot"]},
+      {price:"$449,000",beds:2,baths:2,sqft:1100,address:"24055 Paseo Del Lago Unit 1063, Laguna Woods, CA 92637",score:4,rating:"🟡 WARM",reasons:["Under $800K","Under $500K"]},
+      {price:"$775,000",beds:2,baths:2,sqft:1104,address:"29576 Pelican Way, Laguna Niguel, CA 92677",score:2,rating:"⚪ COLD",reasons:["Under $800K"]},
+      {price:"$1,249,995",beds:4,baths:4,sqft:3156,address:"14350 Saint Michaels Ln, Chino, CA 91710",score:2,rating:"⚪ COLD",reasons:["4 bedrooms","$396/sqft"]},
+      {price:"$1,999,900",beds:4,baths:3,sqft:2300,address:"22 Serenity Ln, Laguna Niguel, CA 92677",score:1,rating:"⚪ COLD",reasons:["4 bedrooms"]},
+      {price:"$8,250,000",beds:4,baths:4,sqft:3705,address:"2501 Harbor View Dr, Corona Del Mar, CA 92625",score:1,rating:"⚪ COLD",reasons:["4 bedrooms"]},
+      {price:"$1,580,000",beds:4,baths:3,sqft:2612,address:"2216 Rancho Corona Dr, Corona, CA 92882",score:1,rating:"⚪ COLD",reasons:["4 bedrooms"]},
+      {price:"$820,000",beds:4,baths:2.5,sqft:1872,address:"1544 Dahlia Cir, Corona, CA 92882",score:1,rating:"⚪ COLD",reasons:["4 bedrooms"]},
+      {price:"$929,999",beds:3,baths:2,sqft:1294,address:"2359 Temescal Ave, Norco, CA 92860",score:1,rating:"⚪ COLD",reasons:["3 bedrooms"]},
+    ];
+    renderDeals(allDeals);
+    document.getElementById('lastUpdated').textContent = 'Last updated: 2026-05-30 | Source: Zillow FSBO Orange County';
+  } catch(e) {
+    console.error(e);
+  }
+}
+
+function renderDeals(deals) {
+  const hot = deals.filter(d => d.score >= 7).length;
+  const warm = deals.filter(d => d.score >= 4 && d.score < 7).length;
+  const under800 = deals.filter(d => {
+    const p = parseInt(d.price.replace(/[$,]/g,''));
+    return p > 0 && p < 800000;
+  });
+  const avgP = under800.length > 0 ? under800.reduce((s,d) => s + parseInt(d.price.replace(/[$,]/g,'')), 0) / under800.length : 0;
+
+  document.getElementById('totalCount').textContent = deals.length;
+  document.getElementById('hotCount').textContent = hot;
+  document.getElementById('warmCount').textContent = warm;
+  document.getElementById('avgPrice').textContent = avgP > 0 ? '$' + Math.round(avgP/1000) + 'K' : '—';
+
+  const tbody = document.getElementById('dealTable');
+  tbody.innerHTML = deals.map(d => {
+    const price = parseInt(d.price.replace(/[$,]/g,'')) || 0;
+    const ppsf = d.sqft > 0 ? Math.round(price / d.sqft) : '—';
+    const rowClass = d.score >= 7 ? 'hot-row' : d.score >= 4 ? 'warm-row' : '';
+    const badgeClass = d.score >= 7 ? 'badge-hot' : d.score >= 4 ? 'badge-warm' : 'badge-cold';
+    const zillow = 'https://www.zillow.com/homes/' + encodeURIComponent(d.address);
+    return `<tr class="${rowClass}">
+      <td><span class="badge ${badgeClass}">${d.score}/10</span></td>
+      <td class="mono">${d.price}</td>
+      <td>${d.beds}/${d.baths}</td>
+      <td class="mono">${d.sqft > 0 ? d.sqft.toLocaleString() : '—'}</td>
+      <td class="mono">${typeof ppsf === 'number' ? '$'+ppsf : ppsf}</td>
+      <td>${d.address}</td>
+      <td class="reasons">${(d.reasons||[]).join(', ')}</td>
+      <td><a href="${zillow}" target="_blank" class="zillow-link">View →</a></td>
+    </tr>`;
+  }).join('');
+}
+
+function filterDeals(type) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  
+  let filtered = allDeals;
+  if (type === 'hot') filtered = allDeals.filter(d => d.score >= 7);
+  else if (type === 'warm') filtered = allDeals.filter(d => d.score >= 4 && d.score < 7);
+  else if (type === 'under500') filtered = allDeals.filter(d => parseInt(d.price.replace(/[$,]/g,'')) < 500000);
+  else if (type === 'wholesale') filtered = allDeals.filter(d => {
+    const p = parseInt(d.price.replace(/[$,]/g,''));
+    return p > 0 && p < 500000 && d.score >= 4;
+  });
+  else if (type === 'ownerfinance') filtered = allDeals.filter(d => {
+    // Owner finance targets: higher price OK, look for long DOM, older owners, free & clear
+    const p = parseInt(d.price.replace(/[$,]/g,''));
+    return p > 0 && p < 1000000;
+  });
+  else if (type === 'fixrent') filtered = allDeals.filter(d => {
+    // Fix & rent: 3+ beds, under $800K, decent sqft for rental
+    const p = parseInt(d.price.replace(/[$,]/g,''));
+    return p > 0 && p < 800000 && d.beds >= 3;
+  });
+  else if (type === 'oc') filtered = allDeals.filter(d => {
+    const oc = ['costa mesa','santa ana','anaheim','irvine','huntington','fountain valley','garden grove','stanton','placentia','orange','laguna','newport'];
+    return oc.some(c => d.address.toLowerCase().includes(c));
+  });
+  renderDeals(filtered);
+}
+
+function searchDeals(q) {
+  const filtered = allDeals.filter(d => d.address.toLowerCase().includes(q.toLowerCase()));
+  renderDeals(filtered);
+}
+
+function calcWholesale() {
+  var arv = +document.getElementById('arv').value;
+  var repairs = +document.getElementById('repairs').value;
+  var fee = +document.getElementById('fee').value;
+  var max = arv * 0.7 - repairs - fee;
+  document.getElementById('maxOffer').textContent = 'Max Offer: $' + max.toLocaleString();
+}
+
+function calcOwnerFin() {
+  var price = +document.getElementById('ofPrice').value;
+  var down = +document.getElementById('ofDown').value;
+  var rate = +document.getElementById('ofRate').value / 100 / 12;
+  var loan = price - down;
+  var n = 360;
+  var payment = loan * (rate * Math.pow(1+rate,n)) / (Math.pow(1+rate,n) - 1);
+  document.getElementById('ofPayment').textContent = 'Monthly: $' + Math.round(payment).toLocaleString();
+}
+
+function calcRent() {
+  var rent = +document.getElementById('rentAmount').value;
+  var mtg = +document.getElementById('rentMtg').value;
+  var cf = rent - mtg;
+  document.getElementById('cashFlow').textContent = 'Cash Flow: $' + cf.toLocaleString() + '/mo';
+  document.getElementById('cashFlow').style.color = cf >= 0 ? '#22c55e' : '#ef4444';
+}
+
+loadData();
+</script>
+</body>
+</html>
