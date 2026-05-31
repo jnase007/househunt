@@ -218,23 +218,8 @@ let allDeals = [
       {price:"$238,000",beds:3,baths:2,sqft:1300,address:"29056 Gabilan St, Barstow, CA 92311",score:5,rating:"🟡 WARM",type:"SFR",reasons:["Free & Clear","PropStream Verified"],analysis:{estRent:1600,estRehab:20000,arv:280000,flip:{profit:22000,roi:8.5},rental:{cashflow:-20}}},
     ];
 
-async function loadData() {
-  try {
-    // Try to load the latest scored results
-    const files = ['results/fsbo-2026-05-30-scored.json'];
-    for (const file of files) {
-      try {
-        const resp = await fetch(file);
-        if (resp.ok) {
-          const data = await resp.json();
-          allDeals = data.listings || [];
-          renderDeals(allDeals);
-          document.getElementById('lastUpdated').textContent = 'Last updated: ' + data.date + ' | Source: ' + (data.source || 'Multiple');
-          return;
-        }
-      } catch(e) {}
-    }
-    // Fallback — hardcoded data from today's scrape
+function loadData() {
+    // Use inline PropStream data directly
     allDeals = [
       {price:"$265,000",beds:4,baths:2,sqft:1,address:"10550 Western Ave Space 9, Stanton, CA 90680",score:8,rating:"🔥 HOT",reasons:["Under $800K","Under $500K","Under $300K","4 bedrooms","Target area: Stanton"]},
       {price:"$192,500",beds:3,baths:2,sqft:1152,address:"21650 Temescal Canyon Rd Space 60, Corona, CA 92883",score:7,rating:"🔥 HOT",reasons:["Under $800K","Under $500K","Under $300K","3 bedrooms","$167/sqft"]},
@@ -256,10 +241,7 @@ async function loadData() {
       {price:"$929,999",beds:3,baths:2,sqft:1294,address:"2359 Temescal Ave, Norco, CA 92860",score:1,rating:"⚪ COLD",reasons:["3 bedrooms"]},
     ];
     renderDeals(allDeals);
-    document.getElementById('lastUpdated').textContent = 'Last updated: 2026-05-30 | Source: Zillow FSBO Orange County';
-  } catch(e) {
-    console.error(e);
-  }
+    document.getElementById('lastUpdated').textContent = 'Last updated: 2026-05-31 | Source: PropStream — Needles + Barstow, CA';
 }
 
 function renderDeals(deals) {
