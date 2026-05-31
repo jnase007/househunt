@@ -106,6 +106,7 @@ table{font-size:0.75rem}.stats{flex-direction:column}.stat{min-width:auto}}
         <th>Est Rent</th>
         <th>Flip Profit</th>
         <th>Rental CF</th>
+        <th>CoC Return</th>
         <th>Address</th>
         <th>Link</th>
       </tr>
@@ -247,6 +248,10 @@ function renderDeals(deals) {
     var a = d.analysis || {};
     var flipP = a.flip ? a.flip.profit : 0;
     var rentalCF = a.rental ? a.rental.cashflow : 0;
+    var priceNum = parseInt(d.price.replace(/[$,]/g,'')) || 0;
+    var downPayment = Math.round(priceNum * 0.10);
+    var annualCF = rentalCF * 12;
+    var cocReturn = downPayment > 0 ? ((annualCF / downPayment) * 100).toFixed(1) : '—';
     var estRent = a.estRent || 0;
     var flipROI = a.flip ? a.flip.roi : 0;
     return `<tr class="${rowClass}">
@@ -257,6 +262,7 @@ function renderDeals(deals) {
       <td class="mono" style="color:#2563eb">$${estRent ? estRent.toLocaleString() : '—'}<span style="font-size:0.65rem;color:#9ca3af">/mo</span></td>
       <td class="mono" style="color:${flipP>0?'#16a34a':'#dc2626'}">$${flipP ? flipP.toLocaleString() : '—'}<br><span style="font-size:0.65rem;color:#9ca3af">${flipROI}% ROI</span></td>
       <td class="mono" style="color:${rentalCF>=0?'#16a34a':'#dc2626'}">$${rentalCF ? rentalCF.toLocaleString() : '—'}<span style="font-size:0.65rem;color:#9ca3af">/mo</span></td>
+      <td class="mono" style="color:${parseFloat(cocReturn)>10?'#16a34a':parseFloat(cocReturn)>0?'#2563eb':'#dc2626'}">${cocReturn}%<br><span style="font-size:0.6rem;color:#9ca3af">on $${downPayment.toLocaleString()}</span></td>
       <td style="font-size:0.8rem">${d.address}</td>
       <td><a href="${zillow}" target="_blank" class="zillow-link">View →</a></td>
     </tr>`;
