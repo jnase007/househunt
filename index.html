@@ -85,7 +85,7 @@ table{font-size:0.75rem}.stats{flex-direction:column}.stat{min-width:auto}}
     <button class="filter-btn active" onclick="filterDeals('all')">All</button>
     <button class="filter-btn" onclick="filterDeals('hot')">🔥 Hot</button>
     <button class="filter-btn" onclick="filterDeals('warm')">🟡 Warm</button>
-    <button class="filter-btn active" onclick="filterDeals('under500')">Under $500K</button>
+    <button class="filter-btn" onclick="filterDeals('under500')">Under $500K</button>
     <button class="filter-btn" onclick="filterDeals('oc')">Orange County</button>
     <button class="filter-btn" onclick="filterDeals('sfr')">🏠 SFR Only</button>
     <button class="filter-btn" onclick="filterDeals('wholesale')">💰 Wholesale</button>
@@ -365,7 +365,6 @@ function calcRent() {
 }
 
 loadData();
-setTimeout(function(){ filterDeals('under500'); document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active')); document.querySelector('[onclick*=under500]').classList.add('active'); }, 500);
 </script>
 </body>
 </html>
